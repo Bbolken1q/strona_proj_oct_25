@@ -62,3 +62,12 @@ p {
     color: #fff !important;
     
 }
+
+.tooltip-arrow {
+    opacity: 0;
+}
+
+.tooltip {
+    background-color: rgb(10, 10, 10);
+    opacity: 1;
+}

@@ -16,9 +16,9 @@ class ElementFactory extends React.Component {
             <div className='element-factory'>
                 <div className='element-factory-title' >
                     <p  data-bs-toggle="tooltip" data-bs-placement="top"
-                        title='Moje najtrudniejsze poziomy w grze Geometry Dash'
+                        title= {this.props.tooltipTitle}
                         data-bs-offset="0,-5">
-                        {this.props.title}</p>
+                        <img className='tooltip-image' src={this.props.image} alt={this.props.imageAlt}/>{this.props.title}</p>
                 </div>
                 {this.elements}
             </div>

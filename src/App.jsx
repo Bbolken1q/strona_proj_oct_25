@@ -9,7 +9,8 @@ import logo from './assets/logo.png'
 import React from 'react';
 import ElementFactory from './components/elementFactory';
 import {createGeometryDashLevel} from './components/gmd';
-import { Faceit } from './components/faceit';
+import { createFaceitStats } from './components/faceit';
+import gdLogo from './assets/gd-logo.png'
 
 async function getData() {
   let stats = await fetch("http://balls.monster:2052/");
@@ -21,13 +22,14 @@ function fill(fn, callback) {
   let elements = [];
   let resolves = [];
   
-  for (let i = 0; i < 5; i++){ 
+  for (let i = 0; i < 6; i++){ 
     elements.push(new Promise((resolve) => (resolves[i] = resolve)))
   }
 
   for (let i = 0; i < 5; i++){
     elements[i] = fn(i, elements[i])
   }
+  elements[5] = createFaceitStats(5, elements[5])
 
   callback.then(result => result.json()).then(result => {
     // console.log(result["gd"])
@@ -64,9 +66,12 @@ class App extends React.Component {
                   callback={getData().then()}
                   elementClassCreateFunction={createGeometryDashLevel}
                   fillFunction={fill} 
+                  image = {gdLogo}
+                  imageAlt = "geometry dash logo"
+                  tooltipTitle = "Moje najtrudniejsze poziomy w grze Geometry Dash"
                   title = "GD Hardest"/>
 
-                <Faceit callback={getData()}/>
+                {/* <Faceit callback={getData().then()}/> */}
               </div>
             </div>
             <div className="col-lg-6 px-2">
