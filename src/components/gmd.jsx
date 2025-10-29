@@ -1,5 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
+import '../styles/gmd.css';
+
 import React from 'react';
 import easyDemonFace from '../assets/gd_demon_faces/EasyDemon.png';
 import mediumDemonFace from '../assets/gd_demon_faces/MediumDemon.png';
@@ -19,8 +21,8 @@ var demonFaces = {
 }
 
 function createGeometryDashLevel(unique_key, callback) {
-    return(
-        <GeometryDashLevel callback={callback} key={unique_key} id={unique_key}/>
+    return (
+        <GeometryDashLevel callback={callback} key={unique_key} id={unique_key} />
     )
 }
 class GeometryDashLevel extends DataComponent {
@@ -32,7 +34,7 @@ class GeometryDashLevel extends DataComponent {
             data: null
         }
     }
-    
+
     render() {
         if (this.state.loading === true) {
             return (
@@ -42,13 +44,19 @@ class GeometryDashLevel extends DataComponent {
             let levelName = JSON.parse(this.state.data[this.arrayName])[this.props.id].name
             let difficultyName = JSON.parse(this.state.data[this.arrayName])[this.props.id].difficulty
             return (
-            <div className='geometry-dash-level'>
-                    <div className='geometry-dash-level-name'><img className='difficulty-face' src={demonFaces[difficultyName]} alt="difficulty face"/>{" " + levelName}</div>
-                    <div className='geometry-dash-level-difficulty'>{difficultyName}</div>
-            </div>
-        )
+                <div className='geometry-dash-level'>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td className='geometry-dash-level-name'><img className='difficulty-face' src={demonFaces[difficultyName]} alt="difficulty face" />{" " + levelName}</td>
+                                <td className='geometry-dash-level-difficulty'>{difficultyName}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            )
         }
     }
 }
 
-export {createGeometryDashLevel, GeometryDashLevel};
+export { createGeometryDashLevel, GeometryDashLevel };

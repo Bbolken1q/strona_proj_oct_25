@@ -1,0 +1,41 @@
+.geometry-dash-level {
+    width: 100%;
+    display: block;
+}
+
+.geometry-dash-level > table {
+    width: 100%;
+    display: block;
+}
+
+.geometry-dash-level > table > tbody {
+    width: 100%;
+    display: block;
+}
+
+.geometry-dash-level > table > tbody > tr {
+    width: 100%;
+    display: block;
+}
+
+.geometry-dash-level-name {
+    /* float: left; */
+    display: inline-block;
+    width: 50%;
+}
+
+.geometry-dash-level-difficulty {
+    /* float: right; */
+    display: inline-block;
+    width: 50%;
+    text-align: right;
+}
+
+.difficulty-face {
+    /* margin: auto; */
+    width: 17px;
+    height: 17px;
+    /* float: left; */
+    
+}
+

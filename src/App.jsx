@@ -1,5 +1,4 @@
-import './style.css'
-import './components.css'
+import './styles/style.css'
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
@@ -11,14 +10,17 @@ import ElementFactory from './components/elementFactory';
 import {createGeometryDashLevel} from './components/gmd';
 import { createFaceitStats } from './components/faceit';
 import gdLogo from './assets/gd-logo.png'
+import { Post } from './components/post';
 
-async function getData() {
-  let stats = await fetch("http://balls.monster:2052/");
+
+
+async function getData(link) {
+  let stats = await fetch(link);
   return await stats;
   // console.log(await window.stats.json());
 }
 
-function fill(fn, callback) {
+function fillStatsTable(fn, callback) {
   let elements = [];
   let resolves = [];
   
@@ -63,9 +65,9 @@ class App extends React.Component {
             <div className="col-lg-4 px-2">
               <div className="content-column left px-1">
                 <ElementFactory
-                  callback={getData().then()}
+                  callback={getData("http://balls.monster:2052/")}
                   elementClassCreateFunction={createGeometryDashLevel}
-                  fillFunction={fill} 
+                  fillFunction={fillStatsTable} 
                   image = {gdLogo}
                   imageAlt = "geometry dash logo"
                   tooltipTitle = "Moje najtrudniejsze poziomy w grze Geometry Dash"
@@ -76,7 +78,10 @@ class App extends React.Component {
             </div>
             <div className="col-lg-6 px-2">
               <div className="content-column middle px-1">
-                testtest
+                {/* <ElementFactory
+                  callback={getData("http://balls.monster:2052/")} 
+                /> */}
+                <Post />
               </div>
             </div>
             <div className="col-lg-2 px-2">

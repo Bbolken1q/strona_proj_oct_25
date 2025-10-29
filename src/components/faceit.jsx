@@ -1,5 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
+import '../styles/faceit.css';
+
 import React from 'react';
 import faceitLogo from '../assets/faceit-logo.svg';
 import { DataComponent } from './dataElement';
@@ -43,8 +45,6 @@ class Faceit extends DataComponent {
             data: null
         }
     }
-
-    // componentDidMount() {}
     
     render() {
         if (this.state.loading === true) {

@@ -5,10 +5,7 @@ import React from 'react';
 class ElementFactory extends React.Component {
     constructor(props) {
         super(props)
-        // this.callback = props.callback;
-        // this.elements = [createGeometryDashLevel("Test Level 1", 1), createGeometryDashLevel("Test Level 2", 2)];
         this.elements = props.fillFunction(props.elementClassCreateFunction, props.callback);
-        // props.callback.then()
     }
 
     render() {

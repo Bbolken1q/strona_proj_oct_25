@@ -1,48 +1,3 @@
-.content-column {
-    /* height: 100%; */
-    background-color: #00000033;
-}
-
-.geometry-dash-level {
-    width: 100%;
-    display: block;
-}
-
-.geometry-dash-level-name {
-    float: left;
-    width: calc(50% - 10px);
-}
-
-.geometry-dash-level-difficulty {
-    float: right;
-    width: 50%;
-    text-align: right;
-}
-
-.element-factory {
-    display: inline-block;
-    width: 100%;
-    height: 100%;
-    /* overflow-y: scroll; */
-}
-
-.difficulty-face {
-    /* margin: auto; */
-    width: 17px;
-    height: 17px;
-    /* float: left; */
-    
-}
-
-.element-factory-title {
-    width: 100%;
-    text-align: center;
-    font-size: 1.5em;
-    margin: 10px 0px;
-    padding: 5px 0px;
-    border-bottom: 2px solid white;
-}
-
 .faceit-stats {
     width: 100%;
     display: inline-block;
@@ -64,10 +19,6 @@
     letter-spacing: 0.0025em;
     text-transform: uppercase;
 }
-
-/* .faceit-stats-top-row {
-
-} */
 
 .faceit-username {
     float: left;
@@ -108,10 +59,3 @@
 .faceit-winrate {
     text-align: right;
 }
-
-.tooltip-image {
-    width: 25px;
-    height: 25px;
-    margin-right: 5px;
-}
-
