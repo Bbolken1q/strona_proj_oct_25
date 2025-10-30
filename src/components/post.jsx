@@ -5,10 +5,11 @@ import '../styles/post.css';
 import React from 'react';
 
 import { DataComponent } from './dataElement';
+import { FullscreenPost } from './fullscreenPost';
 
-function createPost(unique_key, callback) {
+function createPost(unique_key, callback, togglable) {
     return (
-        <Post callback={callback} key={unique_key} id={unique_key} />
+        <Post callback={callback} key={unique_key} id={unique_key} togglable={togglable} />
     )
 }
 
@@ -22,7 +23,7 @@ class Post extends DataComponent {
         }
     }
 
-    componentDidMount() { }
+    // componentDidMount() { }
 
     render() {
         if (this.state.loading === true) {
@@ -32,14 +33,12 @@ class Post extends DataComponent {
                         <table width="100%">
                             <tbody width="100%">
                                 <tr width="100%">
-                                    <td width="100%" className='post-content' colSpan={3}>
+                                    <td width="100%" className='post-content' colSpan={3} >
                                         {/* {this.state.data.content} */}
                                         LOADING...
                                     </td>
                                 </tr>
-                                <tr width="100%">
-                                    <td className='views'>W: 6666</td>
-                                    <td className='shares'>U: 6666</td>
+                                <tr width="100%" className='post-stats'>
                                     <td className='date'>DD/MM/YY</td>
                                 </tr>
                             </tbody>
@@ -63,9 +62,7 @@ class Post extends DataComponent {
                                         LOADING...
                                     </td>
                                 </tr>
-                                <tr width="100%">
-                                    <td className='views'>W: 6666</td>
-                                    <td className='shares'>U: 6666</td>
+                                <tr width="100%" className='post-stats'>
                                     <td className='date'>DD/MM/YY</td>
                                 </tr>
                             </tbody>
@@ -74,13 +71,64 @@ class Post extends DataComponent {
                 )
             }
 
+
+
+        } else {
+            var posts = JSON.parse(this.state.data["posts"])
+            console.log("post" + posts[this.props.id])
+            if (posts[this.props.id] === undefined) {
+                return (<></>)
+            }
+            else {
+                if (posts[this.props.id].title === undefined) {
+                    return (
+                        <div className='post'>
+                            <table width="100%">
+                                <tbody width="100%">
+                                    <tr width="100%">
+                                        <td width="100%" className='post-content' colSpan={3}>
+                                            {posts[this.props.id].content}
+                                        </td>
+                                    </tr>
+                                    <tr width="100%" className='post-stats'>
+                                        <td className='date'>{posts[this.props.id].created_at}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    )
+                }
+                else {
+                    return (
+                        <div className='post' onClick={() => {
+                            
+                        }}>
+                            <a href={`/?post=${posts[this.props.id].id}`}>
+                                <table width="100%">
+                                    <tbody width="100%">
+                                        <tr width="100%">
+                                            <td width="100%" colSpan={3}>
+                                                <h4 className='post-title'>{posts[this.props.id].title}</h4>
+                                            </td>
+                                        </tr>
+                                        <tr width="100%">
+                                            <td width="100%" className='post-content'>
+                                                {String(posts[this.props.id].content).slice(0, 100) + String(String(posts[this.props.id].content).slice(0, 100)[99] == undefined ? "" : "...")}
+                                            </td>
+                                        </tr>
+                                        <tr width="100%" className='post-stats'>
+                                            <td className='date' width="100%">{posts[this.props.id].created_at}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </a>
+                        </div>
+                    )
+                }
+            }
         }
 
-        return (
-            <div className='post'>
-                {this.state.data.content}
-            </div>
-        )
+
     }
 }
 

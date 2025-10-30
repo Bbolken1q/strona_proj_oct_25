@@ -3,19 +3,24 @@
     background-color: #27243042;
     display: inline-block;
     width: calc(100% - 2*5px);
-    margin: 5px;
-    border: 1px solid #e0e0e096;
+    margin: 0px 5px;
+    border-bottom: 1px solid #e0e0e096;
     border-radius: 2px;
     padding: 10px 16px;
 }
 
+.post:last-of-type {
+    border-bottom: none;
+}
+
 .post-title {
+    width: 50%;
     margin: 0px;
     padding: 0px;
 }
 
 .views {
-    width: 12.5%;
+    width: 25%;
     display: inline-block;
 }
 
@@ -25,7 +30,29 @@
 }
 
 .date {
-    width: 75%;
+    /* width: 50%; */
     display: inline-block;
     text-align: right;
+}
+
+.date-fullscreen {
+    width: 75%;
+}
+
+.post-stats {
+    color: #414141;
+}
+
+.fullscreen {
+    color: rgb(162, 162, 162);
+}
+
+.fullscreen-post {
+    margin: 15px;
+    
+}
+
+.fullscreen-post .post-title {
+    font-weight: 700;
+    margin-bottom: 10px;
 }

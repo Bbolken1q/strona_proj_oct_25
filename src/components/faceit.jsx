@@ -84,7 +84,6 @@ class Faceit extends DataComponent {
         else {
 
             let stats = JSON.parse(this.state.data[this.arrayName]);
-            console.log(stats)
             return (
                 <div className='faceit-stats'>
                     <div className='faceit-stats-header element-factory-title'>
