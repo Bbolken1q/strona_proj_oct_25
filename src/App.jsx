@@ -113,44 +113,17 @@ class App extends React.Component {
     }
 
     return (
-      <main>
-        <div className="navbar px-5 py-2">
-          <a className="navbar-brand" href="/">
-            <img src={logo} alt="logo" width="50px" height="50px" className="me-2" /> balls.monster </a>
-        </div>
+      <>
+        <main>
+          <div className="navbar px-5 py-2">
+            <a className="navbar-brand" href="/">
+              <img src={logo} alt="logo" width="50px" height="50px" className="me-2" /> balls.monster </a>
+          </div>
 
-        <div className="container">
-          <div className="row">
-            <div className="col-xl-4 d-none d-xl-inline-block px-2">
-              <div className="content-column left px-1">
-                <ElementFactory
-                  callback={getData("http://balls.monster:2052/")}
-                  elementClassCreateFunction={createGeometryDashLevel}
-                  fillFunction={fillStatsTable}
-                  image={gdLogo}
-                  imageAlt="geometry dash logo"
-                  tooltipTitle="Moje najtrudniejsze poziomy w grze Geometry Dash"
-                  title="GD Hardest" />
-              </div>
-            </div>
-            <div className="col-xl-6 col-lg-8 px-2 fixed-height">
-              <div className="content-column middle px-1">
-                {main_element}
-              </div>
-            </div>
-            <div className="d-none d-lg-inline-block col-xl-2 col-lg-4 px-2">
-              <div className="content-column right px-1">
-                <ElementFactory
-                  callback={getData("http://balls.monster:2052/bestposts")}
-                  elementClassCreateFunction={createBestPostComponent}
-                  fillFunction={fillBestPostsTable}
-                  title="Best"
-                  image={blog_best}
-                  imageAlt="konkuter"
-                  tooltipTitle=""
-                // nodeco = {true}
-                />
-                <div className='d-xl-none'>
+          <div className="container">
+            <div className="row">
+              <div className="col-xl-4 d-none d-xl-inline-block px-2">
+                <div className="content-column left px-1">
                   <ElementFactory
                     callback={getData("http://balls.monster:2052/")}
                     elementClassCreateFunction={createGeometryDashLevel}
@@ -161,10 +134,47 @@ class App extends React.Component {
                     title="GD Hardest" />
                 </div>
               </div>
+              <div className="col-xl-6 col-lg-8 px-2 fixed-height">
+                <div className="content-column middle px-1">
+                  {main_element}
+                </div>
+              </div>
+              <div className="d-none d-lg-inline-block col-xl-2 col-lg-4 px-2">
+                <div className="content-column right px-1">
+                  <ElementFactory
+                    callback={getData("http://balls.monster:2052/bestposts")}
+                    elementClassCreateFunction={createBestPostComponent}
+                    fillFunction={fillBestPostsTable}
+                    title="Best"
+                    image={blog_best}
+                    imageAlt="konkuter"
+                    tooltipTitle="Posty posortowane pod względem wyświetleń"
+                  // nodeco = {true}
+                  />
+                  <div className='d-xl-none'>
+                    <ElementFactory
+                      callback={getData("http://balls.monster:2052/")}
+                      elementClassCreateFunction={createGeometryDashLevel}
+                      fillFunction={fillStatsTable}
+                      image={gdLogo}
+                      imageAlt="geometry dash logo"
+                      tooltipTitle="Moje najtrudniejsze poziomy w grze Geometry Dash"
+                      title="GD Hardest" />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </main>
+          <footer>
+          To jest moja własna praca, wykorzystane zostały tylko szablony stron<sup><a href="#" data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="(brak)"
+                            data-bs-offset="0,-5"> 1</a></sup> oraz dokumentacja bootstrapa<sup><a href="#" data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="oraz dokumentacja innych bibliotek, takich jak React.js i Pixi.js, dokumentacja modułów better-sqlite3, Express.js, oraz dokumentacja api faceit.com lub gddl, o czym się nie mówi"
+                            data-bs-offset="0,-5"> 2</a></sup> <br/> Bolesław Bondyra
+        </footer>
+        </main>
+        
+      </>
     )
   }
 

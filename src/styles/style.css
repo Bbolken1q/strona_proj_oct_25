@@ -58,19 +58,19 @@ p {
 .container { 
     width: 100%;
     /* height: calc(100% - 50px - 1rem - 0.6250rem); */
-    min-height: calc(100vh - 1rem - 60px);
+    min-height: calc(100vh - 1rem - 120px);
     margin: 0px !important;
     max-width: unset !important;
     padding: 0px !important;
 }
 
 .row {
-    min-height: calc(100vh - 1rem - 60px);
+    min-height: calc(100vh - 1rem - 120px);
 }
 
 .fixed-height {
     height: 100%;
-    min-height: calc(100vh - 1rem - 60px);
+    min-height: calc(100vh - 1rem - 120px);
 
     overflow: hidden;
 }
@@ -130,11 +130,17 @@ p {
     overflow-x: hidden;
     -ms-overflow-style: none;
     scrollbar-width: none;
-    min-height: calc(100vh - 1rem - 60px);
+    min-height: calc(100vh - 1rem - 120px);
     /* over */
 }
 
 a {
     color: white !important;
     text-decoration: none !important;
+}
+
+footer {
+    height: 60px;
+    background-color: #0000005a;
+    text-align: center;
 }
