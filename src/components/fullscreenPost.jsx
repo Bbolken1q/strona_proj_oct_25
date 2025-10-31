@@ -12,14 +12,14 @@ class FullscreenPost extends React.Component {
     }
 
     componentDidMount() {
-        var fetchData = fetch(`http://balls.monster:2052/post?number=${this.props.id}`)
+        var fetchData = fetch(`https://balls.monster:8443/post?number=${this.props.id}`)
         fetchData.then(result => result.json()).then(result => {
             this.setState({
                 loading: false,
                 data: JSON.parse(result.post)
             })
             console.log(JSON.parse(result.post))
-            fetch("http://balls.monster:2052/updateViews?id=" + JSON.parse(result.post).id)
+            fetch("https://balls.monster:8443/updateViews?id=" + JSON.parse(result.post).id)
         })
     }
 

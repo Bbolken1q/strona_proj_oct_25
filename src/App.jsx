@@ -99,7 +99,7 @@ class App extends React.Component {
     console.log(post)
     if (post == null) {
       var main_element = <ElementFactory
-        callback={getData("http://balls.monster:2052/posts")}
+        callback={getData("https://balls.monster:8443/posts")}
         elementClassCreateFunction={createPost}
         fillFunction={fillPostsTable}
         title="Blog"
@@ -126,7 +126,7 @@ class App extends React.Component {
               <div className="col-xl-4 d-none d-xl-inline-block px-2">
                 <div className="content-column left px-1">
                   <ElementFactory
-                    callback={getData("http://balls.monster:2052/")}
+                    callback={getData("https://balls.monster:8443/")}
                     elementClassCreateFunction={createGeometryDashLevel}
                     fillFunction={fillStatsTable}
                     image={gdLogo}
@@ -143,7 +143,7 @@ class App extends React.Component {
               <div className="d-none d-lg-inline-block col-xl-2 col-lg-4 px-2">
                 <div className="content-column right px-1">
                   <ElementFactory
-                    callback={getData("http://balls.monster:2052/bestposts")}
+                    callback={getData("https://balls.monster:8443/bestposts")}
                     elementClassCreateFunction={createBestPostComponent}
                     fillFunction={fillBestPostsTable}
                     title="Best"
@@ -154,7 +154,7 @@ class App extends React.Component {
                   />
                   <div className='d-xl-none'>
                     <ElementFactory
-                      callback={getData("http://balls.monster:2052/")}
+                      callback={getData("https://balls.monster:8443/")}
                       elementClassCreateFunction={createGeometryDashLevel}
                       fillFunction={fillStatsTable}
                       image={gdLogo}
