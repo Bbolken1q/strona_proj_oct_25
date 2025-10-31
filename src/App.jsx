@@ -11,6 +11,7 @@ import { createFaceitStats } from './components/faceit';
 import { createPost } from './components/post';
 import { FullscreenPost } from './components/fullscreenPost';
 import { createBestPostComponent } from './components/bestPostComponent';
+import { BackgroundCanvas } from './components/backgroundCanvas';
 
 
 import logo from './assets/logo.png'
@@ -173,7 +174,7 @@ class App extends React.Component {
                             data-bs-offset="0,-5"> 2</a></sup> <br/> Bolesław Bondyra
         </footer>
         </main>
-        
+        <BackgroundCanvas/>
       </>
     )
   }

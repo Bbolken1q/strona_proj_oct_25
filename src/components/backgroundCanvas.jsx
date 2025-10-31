@@ -1,44 +1,49 @@
-/* DEPRECATED */
+import { useEffect } from "react";
+import * as PIXI from "pixi.js";
 
+import bg1 from "../assets/background1.png";
+import bg2 from "../assets/background2.png";
+import bg3 from "../assets/background3.png";
+import bg4 from "../assets/background4.png";
 
-import * as PIXI from 'pixi.js';
+export default function BackgroundCanvas() {
+  useEffect(() => {
+    const backgrounds = [bg1, bg2, bg3, bg4];
+    const bg_image_path =
+      backgrounds[Math.floor(Math.random() * backgrounds.length)];
 
-import bg1 from './assets/background1.png';
-import bg2 from './assets/background2.png';
-import bg3 from './assets/background3.png';
-import bg4 from './assets/background4.png';
+    const body = document.getElementById("body");
+    if (!body) return;
 
-PIXI.extensions.add(PIXI.ResizePlugin);
+    let app;
+    let sprite;
 
-var time = new Date().getTime();
+    async function initPixi() {
+      PIXI.extensions.add(PIXI.ResizePlugin);
 
-const backgrounds = [bg1, bg2, bg3, bg4];
-const bg_image_path = backgrounds[Math.floor(Math.random() * backgrounds.length)];
+      app = new PIXI.Application();
+      await app.init({
+        background: "#000000ff",
+        resizeTo: body,
+      });
 
-const app = new PIXI.Application();
-await app.init({ background: '#000000ff', resizeTo: document.getElementById('body') });
+      app.canvas.className = "background";
+      body.appendChild(app.canvas);
 
-app.canvas.className = "background";
-document.body.appendChild(app.canvas);
+      sprite = new PIXI.Sprite(await PIXI.Assets.load(bg_image_path));
+      sprite.anchor.set(0);
+      app.stage.addChild(sprite);
 
-let sprite = new PIXI.Sprite(await PIXI.Assets.load(bg_image_path));
-sprite.anchor.set(0);
+      function resizeSprite() {
+        sprite.width = app.screen.width;
+        sprite.height = app.screen.height;
+      }
 
-function resizeSprite() {
-  sprite.width = app.screen.width;
-  sprite.height = app.screen.height;
-}
+      resizeSprite();
 
-app.stage.addChild(sprite);
-resizeSprite();
+      window.addEventListener("resize", resizeSprite);
 
-window.addEventListener('resize', () => {
-  app.renderer.resize(app.canvas.clientWidth, app.canvas.clientHeight);
-  resizeSprite();
-  console.log("resized sprite");
-});
-
-const vertex = /*glsl*/`
+      const vertex = /*glsl*/`
   in vec2 aPosition;
   out vec2 vTextureCoord;
 
@@ -67,8 +72,7 @@ const vertex = /*glsl*/`
       vTextureCoord = filterTextureCoord();
   }
 `;
-
-const fragment = /*glsl*/`
+      const fragment = /*glsl*/`
   in vec2 vTextureCoord;
   in vec4 vColor;
 
@@ -122,20 +126,35 @@ const fragment = /*glsl*/`
   }
 `;
 
-const customFilter = new PIXI.Filter({
-  glProgram: new PIXI.GlProgram({
-    fragment,
-    vertex,
-  }),
-  resources: {
-    configUniforms: {
-        uPixelSize: {value: 5, type: 'i32'},
-        uColorChannelCount: {value: 7, type: 'i32'},
-        uScreenWidth: {value: sprite.width, type: 'i32'},
-        uScreenHeight: {value: sprite.height, type: 'i32'}
-    }
-  },
-});
+      const customFilter = new PIXI.Filter({
+        glProgram: new PIXI.GlProgram({
+          fragment,
+          vertex,
+        }),
+        resources: {
+          configUniforms: {
+            uPixelSize: { value: 5, type: "i32" },
+            uColorChannelCount: { value: 7, type: "i32" },
+            uScreenWidth: { value: sprite.width, type: "i32" },
+            uScreenHeight: { value: sprite.height, type: "i32" },
+          },
+        },
+      });
 
-// Apply filter
-sprite.filters = [customFilter];
+      sprite.filters = [customFilter];
+    }
+
+    initPixi();
+
+    return () => {
+      if (app) {
+        app.destroy(true, { children: true, texture: true, baseTexture: true });
+      }
+      window.removeEventListener("resize", () => {});
+    };
+  }, []);
+
+  return null;
+}
+
+export { BackgroundCanvas }
